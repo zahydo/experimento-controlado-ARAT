@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <h:form id="menuForm">
+                <p:panelMenu>
+                    <p:submenu label="#{bundle.Configuracion}" rendered="#{loginController.administrador or loginController.configurador}">
+                        <p:menuitem value="Gestión de Estados" outcome="/shoppingView/recursos/tblEstado/List.xhtml" />
+                        <p:menuitem value="Gestión de Terminales" outcome="/shoppingView/recursos/tblTerminal/List.xhtml" />
+                    </p:submenu>
+                    <p:separator rendered="#{loginController.administrador or loginController.configurador}"/>
+                    <p:submenu label="#{bundle.Pedidos}" rendered="#{loginController.cajero or loginController.mesero or loginController.despachador or loginController.cocinero}">
+                        <p:menuitem rendered="#{loginController.cajero}" value="Gestión de Clientes" outcome="/shoppingView/pedidos/tblCliente/List.xhtml" />
+                        <p:menuitem value="Gestión de Pedidos" outcome="/shoppingView/pedidos/tblPedido/List.xhtml" />
+                        <p:menuitem rendered="#{loginController.cajero}" value="Asignación de pedidos" outcome="/shoppingView/pedidos/asignacion.xhtml" />
+                    </p:submenu>
+                    <p:separator rendered="#{loginController.cajero or loginController.mesero or loginController.despachador}" />
+                    <p:submenu label="#{bundle.Productos}" rendered="#{loginController.cocinero or loginController.configurador}">
+                        <p:menuitem value="Categorías de productos" outcome="/shoppingView/productos/tblCategoria/List.xhtml" />
+                        <p:menuitem value="Gestión de Productos" outcome="/shoppingView/productos/tblProducto/List.xhtml" />
+                        <p:menuitem value="Gestión de Ingredientes" outcome="/shoppingView/productos/tblIngrediente/List.xhtml" />
+                        <p:menuitem value="Preparación de productos" outcome="/shoppingView/productos/tblIngredienteProducto/List.xhtml" />
+                    </p:submenu>
+                    <p:separator rendered="#{loginController.cocinero or loginController.configurador}" />
+                    <p:submenu label="#{bundle.Tienda}" rendered="#{loginController.administrador or loginController.configurador}">
+                        <p:menuitem value="Gestionar Tiendas" outcome="/shoppingView/tienda/tblTienda/List.xhtml" />
+                        <p:menuitem value="Inventario de tiendas" outcome="/shoppingView/tienda/tblProductoTienda/List.xhtml" />
+                    </p:submenu>
+                    <p:separator rendered="#{loginController.administrador or loginController.configurador}"/>
+                    <p:submenu label="#{bundle.Usuarios}" rendered="#{loginController.administrador}">
+                        <p:menuitem value="Gestión de Permisos" outcome="/shoppingView/usuarios/tblPermiso/List.xhtml" />
+                        <p:menuitem value="Gestión de Roles" outcome="/shoppingView/usuarios/tblRol/List.xhtml" />
+                        <p:menuitem value="Gestión de Usuarios" outcome="/shoppingView/usuarios/tblUsuario/List.xhtml" />
+                        <p:menuitem value="Permisos por usuario" outcome="/shoppingView/usuarios/tblPermisoUsuario/List.xhtml" />
+                    </p:submenu>
+                </p:panelMenu>
+            </h:form>
+    </body>
+</html>
